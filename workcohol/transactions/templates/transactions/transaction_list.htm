@@ -1,0 +1,42 @@
+<!-- templates/transactions/transaction_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction List</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Transaction List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Owner</th>
+                    <th>Buyer</th>
+                    <th>Broker</th>
+                    <th>Agreement Cost</th>
+                    <th>Selling Price</th>
+                    <th>Broker Cost</th>
+                    <th>Total Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.property_name }}</td>
+                    <td>{{ transaction.owner.username }}</td>
+                    <td>{{ transaction.buyer.username }}</td>
+                    <td>{{ transaction.broker.username }}</td>
+                    <td>${{ transaction.agreement_cost }}</td>
+                    <td>${{ transaction.selling_price }}</td>
+                    <td>${{ transaction.broker_cost }}</td>
+                    <td>${{ transaction.total_cost }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
