@@ -1,15 +1,157 @@
 <!-- templates/users/register.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f8ff;
+        }
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 1200px;
+            margin: auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-section {
+            flex: 1;
+            padding: 40px;
+            background-color: #fff;
+        }
+        .quote-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #007BFF, #004C8C);
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+        }
+        .quote {
+            font-style: italic;
+            margin-bottom: 20px;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .trusted-by {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .trusted-by img {
+            max-width: 100px;
+            margin: 0 10px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="number"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #666;
+            background-color: #f9f9f9;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="tel"]:focus,
+        input[type="number"]:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #F1C40F;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #007BFF;
+        }
+        .google-btn {
+            background-color: #fff;
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .google-btn:hover {
+            background-color: #f8f8f8;
+        }
+    </style>
 </head>
 <body>
-    <h1>Register</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Register</button>
-    </form>
+    <div class="container">
+        <div class="form-section">
+            <h2>Create your account</h2>
+            <form method="post" id="registrationForm" action="{% url 'register' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="username" name="username" placeholder="Username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" name="phone_number" placeholder="Phone Number" required autocomplete="tel">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password1" placeholder="Password" required autocomplete="new-password">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirm_password" name="password2" placeholder="Confirm Password" required autocomplete="new-password">
+                </div>
+                <button type="submit">Create account</button>
+            </form>
+            <div class="google-btn">Continue with Google</div>
+            <p>Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+            <p>By creating your account, you agree to the <a href="{% url 'terms' %}">Terms of Service</a> and <a href="{% url 'privacy' %}">Privacy Policy</a>.</p>
+        </div>
+        <div class="quote-section">
+            <div class="quote">
+                <p>Our platform revolutionizes the real estate industry by providing a seamless experience for buyers, sellers, and agents.</p>
+                <p>PropEase<br><br>Real Estate Platform</p>
+            </div>
+            <div class="trusted-by">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Tesla_Logo.svg" alt="Tesla">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/PandG_2017.svg" alt="P&G">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Forbes_logo.svg" alt="Forbes">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Walmart_logo_2020.svg" alt="Walmart">
+            </div>
+        </div>
+    </div>
 </body>
 </html>

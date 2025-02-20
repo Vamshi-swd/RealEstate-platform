@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'properties',
     'reviews',
     'transactions',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -51,7 +52,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+
 ]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    # Add any other allowed origins here
+]
+
+CORS_ALLOW_ALL_ORIGINS = True  # Set to False in production
+
 
 ROOT_URLCONF = 'workcohol.urls'
 
@@ -123,7 +134,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
