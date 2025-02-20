@@ -1,0 +1,35 @@
+<!-- chat_app/templates/chat/room.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="mb-4">Chat Room</h2>
+    <div id="chat-log" class="mb-4"></div>
+    <input type="text" id="chat-message-input" class="form-control mb-2">
+    <button id="chat-message-submit" class="btn btn-primary">Send</button>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        const roomName = "{{ room_name|escapejs }}";
+        const chatSocket = new WebSocket(
+            'ws://' + window.location.host + '/ws/chat/' + roomName + '/'
+        );
+
+        chatSocket.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            const message = data['message'];
+            document.querySelector('#chat-log').textContent += (message + '\n');
+        };
+
+        chatSocket.onclose = function(event) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(event) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({'message': message}));
+            messageInputDom.value = '';
+        };
+    </script>
+{% endblock %}
