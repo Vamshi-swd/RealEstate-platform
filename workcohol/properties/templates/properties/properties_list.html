@@ -1,0 +1,36 @@
+<!-- templates/properties/property_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Property List</title>
+    <!-- Add some basic CSS for styling -->
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .property { margin-bottom: 20px; }
+        .property h2 { color: #333; }
+        .property p { margin: 5px 0; }
+        img { max-width: 100%; height: auto; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Property List</h1>
+    <ul>
+        {% for property in properties %}
+            <li>
+                <h2>{{ property.title }}</h2> - ${{ property.price }}</li>
+                <p>Address: {{ property.address }}</p>
+                <p>Description: {{ property.description }}</p>
+                <p>Type: {{ property.property_type }}</p>
+                <img src="{{ property.images.url }}" alt="{{ property.title }} image">
+                <!-- Include owner information if the owner field is populated -->
+                {% if property.owner %}
+                    <p><strong>Owner:</strong> {{ property.owner.username }}</p>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>No properties available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
