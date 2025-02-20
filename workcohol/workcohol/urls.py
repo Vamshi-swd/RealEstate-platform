@@ -24,6 +24,5 @@ urlpatterns = [
     path('', include('users.urls')),
     path('', include('chat_app.urls')),  # Include the chat_app URLs
     path('users/', include('users.urls')),
-    path('', include('chat_app.urls')),  # Include the chat_app URLs
-
+    path('transactions/', include('transactions.urls')),
 ]

@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'properties',
     'reviews',
     'transactions',
-    'corsheaders'
     'channels',
     'chat_app',
 ]
