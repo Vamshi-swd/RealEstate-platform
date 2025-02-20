@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'properties',
     'reviews',
     'transactions',
+    'channels',
+    'chat_app',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +74,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'workcohol.wsgi.application'
+# settings.py
+ASGI_APPLICATION = 'workcohol.asgi.application'
 
 
 # Database
@@ -82,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'workcohol',
         'USER':'root',
-        'PASSWORD':'0000',
+        'PASSWORD':'8432',
         'HOST': 'localhost',                
         'PORT': '3306',
     }
